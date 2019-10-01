@@ -1,0 +1,143 @@
+$primarycolor: #1e698d;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url('../img/background.jpg');
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $primarycolor;
+}
+
+.main {
+    width: 85%;
+    min-height: 80vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start;
+    position: relative;
+    .header {
+        width: 100%;
+        text-align: center;
+        padding: 30px 0;
+    }
+    .input-box {
+        height: 30px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+            .send__input {
+                padding-left: 10px;
+                width: 150px;
+                height: 100%;
+                border: none;
+                margin-right: 20px;
+                border-radius: 3px;
+            }
+            .send__button {
+                padding-left: 20px;
+                padding-right: 20px;
+                height: 100%;
+                background-color: $primarycolor;
+                color: #FFFFFF;
+                border: none;
+                cursor: pointer;
+                border-radius: 3px;
+                &:hover {
+                    -webkit-box-shadow: 7px -6px 15px -2px rgba(0,0,0,0.3);
+                    -moz-box-shadow: 7px -6px 15px -2px rgba(0,0,0,0.3);
+                    box-shadow: 7px -6px 15px -2px rgba(0,0,0,0.3);
+                }
+            }
+            label {
+                margin: 0 auto;
+                display: inline-block;
+                cursor: pointer;
+                position: relative;
+                padding-left: 25px;
+                margin-right: 15px;
+                font-size: 20px;
+                font-weight: 800;
+            }
+            input[type="radio"]{
+                display: none;
+            }            
+            label:before {
+                content: "";
+                display: inline-block;
+            
+                width: 20px;
+                height: 20px;
+                
+                border-radius: 50%;
+                margin-right: 10px;
+                position: absolute;
+                left: 0;
+                bottom: 1px;
+                background-color: #aaa;
+                box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+            }
+            input[type=radio]:checked + label:before {
+                content: "\2022";
+                color: #f3f3f3;
+                font-size: 30px;
+                text-align: center;
+                line-height: 18px;
+            }            
+            
+    }
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        .plain {
+            min-width: 350px;
+            text-align: center;
+            h3 {
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+            ul {
+                list-style: none;
+                .item {
+                    vertical-align: middle;
+                    border-radius: 10px;
+                    box-sizing: border-box;
+                    width: 100%;
+                    margin-bottom: 10px;
+                    padding: 5px;
+                    padding-left: 15px;
+                    background-color: #FFFFFF;
+                    height: 35px;
+                    color: $primarycolor;
+                    font-weight: 700;
+                    font-size: 21px;
+                }
+            }
+        }
+        .plus-plane .item {
+            border: #7BF482 1px solid;
+        }
+        .minus-plane .item {
+            border: 1px solid #ED404B;
+        }
+    }
+    .total {
+        font-family: sans-serif;
+        font-size: 32px;
+        position: absolute;
+        bottom: 30px;
+    }
+}

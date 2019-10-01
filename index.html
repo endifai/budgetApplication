@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your Budget</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <main class="main">
+        <header class="header">
+            <h1 class="header__title">Ваш бюджет</h1>
+        </header>
+        <div class="input-box">
+            <input type="radio" class="radio" id="radio1" name="type" value="plus" checked/>
+            <label for="radio1">+</label>
+            <input type="radio" class="radio" id="radio2" name="type" value="minus"/>     
+            <label for="radio2">-</label>
+            <input type="text" class="send__input" value="" placeholder="Введите число">
+            <button class="button send__button">
+                Добавить
+            </button>
+        </div>
+        <div class="container">
+                <div class="plain plus-plane">
+                    <h3>+</h3>
+                    <ul class="list plus-list">
+                        
+                    </ul>
+                </div>
+                <div class="plain minus-plane">
+                    <h3>-</h3>
+                    <ul class="list minus-list">
+                        
+                    </ul>
+                </div>
+        </div>
+        <div class="total">
+            <p class="total-text">Итог: <span class="total__sum">0 </span> &#8381;</p>
+        </div>
+    </main> 
+    
+    <script src="js/main.js"></script>
+</body>
+</html>
