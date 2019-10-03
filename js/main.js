@@ -1,8 +1,47 @@
 const sendButton = document.querySelector(".send__button");
 const sendInput = document.querySelector('.send__input');
 const typeInput = document.getElementsByName('type');
-console.log(typeInput);
 
+// Get items from LocalStorage
+
+window.addEventListener('load', () => {
+    const minusItems = JSON.parse(localStorage.getItem('minusItems'));
+    const plusItems = JSON.parse(localStorage.getItem('plusItems'));
+
+    if (minusItems.length > 0){
+        minusItems.forEach((item) => {
+            createItem('minus', item);
+        })
+    }
+    if (plusItems.length > 0){
+        plusItems.forEach((item) => {
+            createItem('plus', item);
+        });
+    };
+
+    calcTotal();
+}); 
+
+// Set items to localStorage
+
+window.addEventListener("beforeunload",() => {
+    const minusLi = document.querySelectorAll('.minus-list .item');
+    const plusLi = document.querySelectorAll('.plus-list .item');
+    const minusItems = [];
+    const plusItems = [];
+
+    minusLi.forEach((item) => {
+        minusItems[minusItems.length] = item.textContent;
+    });
+    plusLi.forEach((item) => {
+        plusItems[plusItems.length] = item.textContent;
+    });
+
+    localStorage.setItem('minusItems', JSON.stringify(minusItems));
+    localStorage.setItem('plusItems', JSON.stringify(plusItems));
+});
+
+// Add item to list
 sendButton.addEventListener('click', () => {
     if (sendInput.value === '' || !parseInt(sendInput.value)){
         return;
