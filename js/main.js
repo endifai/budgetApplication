@@ -31,10 +31,10 @@ window.addEventListener("beforeunload",() => {
     const plusItems = [];
 
     minusLi.forEach((item) => {
-        minusItems[minusItems.length] = item.textContent;
+        minusItems[minusItems.length] = item.firstChild.textContent;
     });
     plusLi.forEach((item) => {
-        plusItems[plusItems.length] = item.textContent;
+        plusItems[plusItems.length] = item.firstChild.textContent;
     });
 
     localStorage.setItem('minusItems', JSON.stringify(minusItems));
@@ -61,13 +61,29 @@ sendButton.addEventListener('click', () => {
     sendInput.value = '';
 })
 
+// remove item from list
+
 function createItem(type, value){
     const list = document.querySelector(`.${type}-list`);
     const li = document.createElement('li');
-
+    const spanValue = document.createElement('span'); 
+    const removeBtn = document.createElement('button');
+    
     li.className = "item";
-    li.textContent = value;
 
+    spanValue.className = 'value';
+    spanValue.textContent = value;
+
+    removeBtn.className = 'remove';
+    removeBtn.textContent = 'x';
+    removeBtn.addEventListener('click', function(){
+        this.parentNode.remove();
+        calcTotal();
+    })
+
+    li.appendChild(spanValue);
+    li.appendChild(removeBtn);
+    
     list.appendChild(li);
 }
 
@@ -77,7 +93,7 @@ function calcTotal(){
     let totalSum = 0;
 
     for (li of listItems){
-        li.parentNode.classList.contains('minus-list') ? totalSum -= Number(li.textContent) : totalSum += Number(li.textContent);
+        li.parentNode.classList.contains('minus-list') ? totalSum -= Number(li.firstChild.textContent) : totalSum += Number(li.firstChild.textContent);
     };
 
     totalElement.textContent = totalSum;

@@ -95,6 +95,8 @@ body {
       .main .container .plain ul {
         list-style: none; }
         .main .container .plain ul .item {
+          display: flex;
+          justify-content: space-around;
           vertical-align: middle;
           border-radius: 10px;
           box-sizing: border-box;
@@ -106,7 +108,20 @@ body {
           height: 35px;
           color: #1e698d;
           font-weight: 700;
-          font-size: 21px; }
+          font-size: 21px;
+          transition: all 0.5s ease-in; }
+          .main .container .plain ul .item .remove {
+            display: none;
+            width: 20px;
+            height: 20px;
+            font-size: 15px;
+            background-color: transparent;
+            color: red;
+            border-radius: 50%;
+            border: red 1px solid; }
+          .main .container .plain ul .item:hover .remove {
+            display: block;
+            cursor: pointer; }
     .main .container .plus-plane .item {
       border: #7BF482 1px solid; }
     .main .container .minus-plane .item {
