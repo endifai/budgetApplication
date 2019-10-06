@@ -8,12 +8,12 @@ window.addEventListener('load', () => {
     const minusItems = JSON.parse(localStorage.getItem('minusItems'));
     const plusItems = JSON.parse(localStorage.getItem('plusItems'));
 
-    if (minusItems.length > 0){
+    if (minusItems && minusItems.length > 0){
         minusItems.forEach((item) => {
             createItem('minus', item);
         })
     }
-    if (plusItems.length > 0){
+    if (plusItems && plusItems.length > 0){
         plusItems.forEach((item) => {
             createItem('plus', item);
         });
