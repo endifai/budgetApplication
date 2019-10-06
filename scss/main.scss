@@ -112,6 +112,8 @@ body {
             ul {
                 list-style: none;
                 .item {
+                    display: flex;
+                    justify-content: space-around;
                     vertical-align: middle;
                     border-radius: 10px;
                     box-sizing: border-box;
@@ -124,6 +126,22 @@ body {
                     color: $primarycolor;
                     font-weight: 700;
                     font-size: 21px;
+                    transition: all 0.5s ease-in;
+                    .remove {
+                        display: none;
+                        width: 20px;
+                        height: 20px;
+                        font-size: 15px;
+                        background-color: transparent;
+                        color: red;
+                        border-radius: 50%;
+                        border: red 1px solid;
+                        
+                    }
+                    &:hover .remove{
+                        display: block;
+                        cursor: pointer;
+                    }
                 }
             }
         }

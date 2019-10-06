@@ -1,8 +1,47 @@
 const sendButton = document.querySelector(".send__button");
 const sendInput = document.querySelector('.send__input');
 const typeInput = document.getElementsByName('type');
-console.log(typeInput);
 
+// Get items from LocalStorage
+
+window.addEventListener('load', () => {
+    const minusItems = JSON.parse(localStorage.getItem('minusItems'));
+    const plusItems = JSON.parse(localStorage.getItem('plusItems'));
+
+    if (minusItems.length > 0){
+        minusItems.forEach((item) => {
+            createItem('minus', item);
+        })
+    }
+    if (plusItems.length > 0){
+        plusItems.forEach((item) => {
+            createItem('plus', item);
+        });
+    };
+
+    calcTotal();
+}); 
+
+// Set items to localStorage
+
+window.addEventListener("beforeunload",() => {
+    const minusLi = document.querySelectorAll('.minus-list .item');
+    const plusLi = document.querySelectorAll('.plus-list .item');
+    const minusItems = [];
+    const plusItems = [];
+
+    minusLi.forEach((item) => {
+        minusItems[minusItems.length] = item.firstChild.textContent;
+    });
+    plusLi.forEach((item) => {
+        plusItems[plusItems.length] = item.firstChild.textContent;
+    });
+
+    localStorage.setItem('minusItems', JSON.stringify(minusItems));
+    localStorage.setItem('plusItems', JSON.stringify(plusItems));
+});
+
+// Add item to list
 sendButton.addEventListener('click', () => {
     if (sendInput.value === '' || !parseInt(sendInput.value)){
         return;
@@ -22,13 +61,29 @@ sendButton.addEventListener('click', () => {
     sendInput.value = '';
 })
 
+// remove item from list
+
 function createItem(type, value){
     const list = document.querySelector(`.${type}-list`);
     const li = document.createElement('li');
-
+    const spanValue = document.createElement('span'); 
+    const removeBtn = document.createElement('button');
+    
     li.className = "item";
-    li.textContent = value;
 
+    spanValue.className = 'value';
+    spanValue.textContent = value;
+
+    removeBtn.className = 'remove';
+    removeBtn.textContent = 'x';
+    removeBtn.addEventListener('click', function(){
+        this.parentNode.remove();
+        calcTotal();
+    })
+
+    li.appendChild(spanValue);
+    li.appendChild(removeBtn);
+    
     list.appendChild(li);
 }
 
@@ -38,7 +93,7 @@ function calcTotal(){
     let totalSum = 0;
 
     for (li of listItems){
-        li.parentNode.classList.contains('minus-list') ? totalSum -= Number(li.textContent) : totalSum += Number(li.textContent);
+        li.parentNode.classList.contains('minus-list') ? totalSum -= Number(li.firstChild.textContent) : totalSum += Number(li.firstChild.textContent);
     };
 
     totalElement.textContent = totalSum;
